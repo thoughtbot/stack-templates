@@ -2,16 +2,14 @@
 
 set -e
 
-name="$1"
-
-if [ -z "$name" ]; then
+if [ -z "$1" ]; then
   echo "Usage: verify TEMPLATE"
   exit 1;
 fi
 
-template="$(pwd)/${name}.hsfiles"
+template="$(pwd)/$1"
 
-createdb stack-template-test_LOWER
+createdb stack-template-test_LOWER 2> /dev/null || true
 
 cd /tmp
 rm -rf stack-template-test

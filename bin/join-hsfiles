@@ -2,14 +2,14 @@
 
 set -e
 
-name="$1"
+template="$1"
+name="${template%*.hsfiles}"
 
 if [ -z "$name" ]; then
   echo "Usage: join-hsfiles TEMPLATE"
   exit 1;
 fi
 
-template="${name}.hsfiles"
 rm -f "$template"
 
 find "input/$name" -type f | LC_ALL=C sort | while read input_file; do

@@ -2,7 +2,7 @@
 
 set -e
 
-name="$1"
+name="${1%*.hsfiles}"
 
 if [ -z "$name" ]; then
   echo "Usage: split-hsfiles TEMPLATE"
