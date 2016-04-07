@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+
+name="$1"
+
+if [ -z "$name" ]; then
+  echo "Usage: split-hsfiles TEMPLATE"
+  exit 1;
+fi
+
+rm -rf "input/$name"
+mkdir -p "input/$name"
+current_file="${name}/HEADER"
+start_file_syntax="{-# START_FILE "
+end_file_syntax=" #-}"
+
+IFS=''
+
+while read -r line; do
+  start_file_result="${line#*$start_file_syntax}"
+  if test "$start_file_result" != "$line"; then
+    current_file="input/${name}/${start_file_result%*$end_file_syntax}"
+    mkdir -p "$(dirname "$current_file")"
+  else
+    echo "$line" >> "${current_file}"
+  fi
+done < "${name}.hsfiles"
