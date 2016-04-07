@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+name="$1"
+
+if [ -z "$name" ]; then
+  echo "Usage: verify TEMPLATE"
+  exit 1;
+fi
+
+template="$(pwd)/${name}.hsfiles"
+
+createdb stack-template-test_LOWER
+
+cd /tmp
+rm -rf stack-template-test
+stack new stack-template-test "$template"
+cd stack-template-test
+stack setup
+stack build
