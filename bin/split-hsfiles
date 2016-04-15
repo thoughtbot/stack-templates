@@ -23,6 +23,6 @@ while read -r line; do
     current_file="input/${name}/${start_file_result%*$end_file_syntax}"
     mkdir -p "$(dirname "$current_file")"
   else
-    echo "$line" >> "${current_file}"
+    printf "%s\n" "$line" >> "${current_file}"
   fi
 done < "${name}.hsfiles"
