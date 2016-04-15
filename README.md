@@ -8,7 +8,7 @@ Custom templates for [Stack] used by thoughtbot.
 
 Usage:
 
-    stack new https://raw.githubusercontent.com/thoughtbot/stack-templates/master/yesod-heroku.hsfiles
+    stack new my-project https://raw.githubusercontent.com/thoughtbot/stack-templates/master/yesod-heroku.hsfiles
 
 Initializes a new Yesod project ready to deploy to Heroku.
 
