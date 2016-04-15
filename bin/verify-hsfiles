@@ -9,11 +9,14 @@ fi
 
 template="$(pwd)/$1"
 
-createdb stack-template-test_LOWER 2> /dev/null || true
+die() {
+  echo "$1"
+  exit 1
+}
 
 cd /tmp
 rm -rf stack-template-test
-stack new stack-template-test "$template"
+stack new stack-template-test "$template" --force --solver || die "Failed: stack new"
 cd stack-template-test
-stack setup
-stack build
+stack setup || die "Failed: stack setup"
+stack build || die "Failed: stack build"
