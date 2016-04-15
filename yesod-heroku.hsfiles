@@ -54,22 +54,21 @@ module Application
     , db
     ) where
 
-import Control.Monad.Logger                 (liftLoc, runLoggingT)
-import Database.Persist.Postgresql          (createPostgresqlPool, pgConnStr,
-                                             pgPoolSize, runSqlPool)
+import Control.Monad.Logger (liftLoc, runLoggingT)
+import Database.Persist.Postgresql (createPostgresqlPool, pgConnStr,
+                                    pgPoolSize, runSqlPool)
 import Import
-import Language.Haskell.TH.Syntax           (qLocation)
+import Language.Haskell.TH.Syntax (qLocation)
 import Network.Wai (Middleware)
-import Network.Wai.Handler.Warp             (Settings, defaultSettings,
-                                             defaultShouldDisplayException,
-                                             runSettings, setHost,
-                                             setOnException, setPort, getPort)
+import Network.Wai.Handler.Warp (Settings, defaultSettings,
+                                 defaultShouldDisplayException,
+                                 runSettings, setHost,
+                                 setOnException, setPort, getPort)
 import Network.Wai.Middleware.RequestLogger (Destination (Logger),
                                              IPAddrSource (..),
                                              OutputFormat (..), destination,
                                              mkRequestLogger, outputFormat)
-import System.Log.FastLogger                (defaultBufSize, newStdoutLoggerSet,
-                                             toLogStr)
+import System.Log.FastLogger (defaultBufSize, newStdoutLoggerSet, toLogStr)
 
 -- Import all relevant handler modules here.
 -- Don't forget to add new modules to your cabal file!
@@ -224,10 +223,10 @@ module Foundation where
 
 import Import.NoFoundation
 import Database.Persist.Sql (ConnectionPool, runSqlPool)
-import Text.Hamlet          (hamletFile)
-import Text.Jasmine         (minifym)
-import Yesod.Default.Util   (addStaticContentExternal)
-import Yesod.Core.Types     (Logger)
+import Text.Hamlet (hamletFile)
+import Text.Jasmine (minifym)
+import Yesod.Default.Util (addStaticContentExternal)
+import Yesod.Core.Types (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 
 -- | The foundation datatype for your application. This can be a good place to
@@ -390,8 +389,8 @@ module Import
     ( module Import
     ) where
 
-import Foundation            as Import
-import Import.NoFoundation   as Import
+import Foundation as Import
+import Import.NoFoundation as Import
 
 {-# START_FILE Import/NoFoundation.hs #-}
 module Import.NoFoundation
@@ -430,17 +429,16 @@ share [mkPersist sqlSettings, mkMigrate "migrateAll"]
 module Settings where
 
 import ClassyPrelude.Yesod
-import Control.Exception           (throw)
-import Data.Aeson                  (Result (..), fromJSON, withObject, (.!=),
-                                    (.:?))
-import Data.FileEmbed              (embedFile)
-import Data.Yaml                   (decodeEither')
+import Control.Exception (throw)
+import Data.Aeson (Result (..), fromJSON, withObject, (.!=), (.:?))
+import Data.FileEmbed (embedFile)
+import Data.Yaml (decodeEither')
 import Database.Persist.Postgresql (PostgresConf)
-import Language.Haskell.TH.Syntax  (Exp, Name, Q)
-import Network.Wai.Handler.Warp    (HostPreference)
-import Yesod.Default.Config2       (applyEnvValue, configSettingsYml)
-import Yesod.Default.Util          (WidgetFileSettings, widgetFileNoReload,
-                                    widgetFileReload)
+import Language.Haskell.TH.Syntax (Exp, Name, Q)
+import Network.Wai.Handler.Warp (HostPreference)
+import Yesod.Default.Config2 (applyEnvValue, configSettingsYml)
+import Yesod.Default.Util (WidgetFileSettings, widgetFileNoReload,
+                           widgetFileReload)
 
 -- | Runtime settings to configure this application. These settings can be
 -- loaded from various sources: defaults, environment variables, config files,
@@ -561,7 +559,7 @@ combineScripts = combineScripts'
 {-# START_FILE Settings/StaticFiles.hs #-}
 module Settings.StaticFiles where
 
-import Settings     (appStaticDir, compileTimeAppSettings)
+import Settings (appStaticDir, compileTimeAppSettings)
 import Yesod.Static (staticFiles)
 
 -- This generates easy references to files in the static directory at compile time,
@@ -688,7 +686,7 @@ main :: IO ()
 main = develMain
 
 {-# START_FILE app/main.hs #-}
-import Prelude     (IO)
+import Prelude (IO)
 import Application (appMain)
 
 main :: IO ()
@@ -803,16 +801,17 @@ module TestImport
     , module X
     ) where
 
-import Application           (makeFoundation, makeLogWare)
-import ClassyPrelude         as X
-import Database.Persist      as X hiding (get)
-import Database.Persist.Sql  (SqlPersistM, SqlBackend, runSqlPersistMPool, rawExecute, rawSql, unSingle, connEscapeName)
-import Foundation            as X
-import Model                 as X
-import Test.Hspec            as X
+import Application (makeFoundation, makeLogWare)
+import ClassyPrelude as X
+import Database.Persist as X hiding (get)
+import Database.Persist.Sql (SqlPersistM, SqlBackend, runSqlPersistMPool,
+                             rawExecute, rawSql, unSingle, connEscapeName)
+import Foundation as X
+import Model as X
+import Test.Hspec as X
 import Text.Shakespeare.Text (st)
 import Yesod.Default.Config2 (ignoreEnv, loadAppSettings)
-import Yesod.Test            as X
+import Yesod.Test as X
 
 runDB :: SqlPersistM a -> YesodExample App a
 runDB query = do
