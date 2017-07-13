@@ -46,7 +46,7 @@ may be redistributed under the terms specified in the [LICENSE] file.
 ## About
 
 These templates are based on the [official templates].
-mainained by [thoughtbot].
+maintained by [thoughtbot].
 
 ![thoughtbot](https://thoughtbot.com/logo.png)
 
